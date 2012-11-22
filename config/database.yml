@@ -1,0 +1,19 @@
+local: &local
+  adapter:  mysql2
+  encoding: utf8
+  username: root
+  password: root
+#  socket: /tmp/mysql.sock
+
+test:
+  database: workout_test
+  <<: *local
+
+development:
+  database: workout_development
+  <<: *local
+
+production:
+  database: workout_production
+  <<: *local
+

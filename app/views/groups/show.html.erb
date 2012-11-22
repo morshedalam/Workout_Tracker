@@ -1,0 +1,32 @@
+<p id="notice"><%= notice %></p>
+
+<p> 
+	<b>Name </b>
+	<%= @group.name %>
+</p>
+
+
+	<table class="table table-striped">
+	  <thead>
+	  	<tr>
+			<td>Workout</td>
+			<td>Exercise 1</td>
+			<td>Exercise 2</td>
+			<td>Exercise 3</td>
+			<td>Exercise 4</td>
+			<td>Exercise 5</td>
+	    </tr>
+	  </thead>	
+	
+<% @group.workouts.each do |workout| %>	
+		 <tr>
+			<td><%= link_to workout.name, workout%> </td>
+			<% workout.exercises.each do |exercise| %>
+				<td><%= link_to exercise.name, exercise%> </td>
+				<%end%>
+		</tr>
+<% end %>
+</table>
+
+<%= link_to 'Edit', edit_group_path(@group), :class => "btn"  %> |
+<%= link_to 'Back', groups_path, :class => "btn"  %>

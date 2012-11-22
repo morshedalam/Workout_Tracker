@@ -1,0 +1,34 @@
+<h1>New user_workout</h1>
+
+<h2>Group <%= @group.name %>: Workouts: <%= @workout.name %> </h2>
+
+<!-- for each exercise in the workout create a new userworkout for this user and this exercise and this workout -->
+<!-- get working form tag -->
+<%= form_tag('/user_workouts', :method => :post) do %>
+    <%= hidden_field_tag :group_id, @group.id %>
+    <%= hidden_field_tag :workout_id, @workout.id %>
+
+    <% @user_workouts.each do |uw| %>
+        <%= label_tag :uw, uw.exercise.name %>
+        <%= number_field_tag "user_workouts[#{uw.exercise.id}][weight]" %>
+        <%= current_user.last_workout_of_exercise(uw.exercise.id) %>
+    <% end %>
+
+    <div>
+      <%= submit_tag 'Save', :class => 'btn btn-primary' %>
+      <%= link_to 'Back', user_workouts_path, :class => 'btn btn-primary' %>
+    </div>
+
+<% end %>
+
+
+
+<!-- params[:user_workouts] = [{:7 => {:weight => 10}}] -->
+<!-- Step 1
+Select group
+Select workout
+
+Step 2
+see workout group
+see workout name
+enter weights for each exercise in workout -->
